@@ -8,6 +8,9 @@ namespace Neon
 	{
 	public:
 		WinWindow();
+
+		virtual void Init();
+
 		virtual void OnUpdate() override;
 
 		virtual void Shutdown() override;

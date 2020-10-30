@@ -16,6 +16,5 @@ namespace Neon
 
 	private:
 		std::shared_ptr<Window> m_Window;
-
 	};
 }

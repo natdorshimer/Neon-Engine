@@ -3,8 +3,16 @@
 #include "Core.h"
 #include "GLFW/glfw3.h"
 #include <memory>
+#include "Event.h"
 
-Neon::WinWindow::WinWindow()
+
+Neon::WinWindow::WinWindow() : 
+	m_Window(nullptr)
+{
+	Init();
+}
+
+void Neon::WinWindow::Init()
 {
 	if (!glfwInit())
 		NEON_ASSERT(false);
@@ -13,8 +21,23 @@ Neon::WinWindow::WinWindow()
 
 	NEON_ASSERT(m_Window);
 
+
 	glfwMakeContextCurrent(m_Window);
+
+	glfwSetWindowUserPointer(m_Window, &m_WindowData);
+
+	glfwSetWindowCloseCallback(m_Window, 
+		[](GLFWwindow* win)
+		{
+			WindowData* data = (WindowData*) glfwGetWindowUserPointer(win);
+
+			//TODO: propagate the event towards application
+
+			glfwDestroyWindow(win);
+		}
+	);
 }
+
 
 void Neon::WinWindow::OnUpdate()
 {

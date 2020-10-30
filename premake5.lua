@@ -120,8 +120,7 @@ project "Playground"
     includedirs
     {
         "Neon/src/",
-        "%{IncludeDir.GLFW}",
-        "%{IncludeDir.spdlog}"
+        "Neon/vendor/GLFW/include"
     }
 
     links

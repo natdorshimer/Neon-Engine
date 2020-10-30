@@ -4,6 +4,12 @@
 
 namespace Neon
 {
+	struct WindowData
+	{
+		unsigned int Width;
+		unsigned int Height;
+	};
+
 	class Window
 	{
 	public:
@@ -15,8 +21,8 @@ namespace Neon
 
 		static Window* Create();
 
-	private:
-
+	protected:
+		WindowData m_WindowData;
 	};
 }
 
