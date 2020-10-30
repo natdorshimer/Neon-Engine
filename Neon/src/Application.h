@@ -10,9 +10,11 @@ namespace Neon
 	public:
 		Application();
 
-		void Shutdown();
+		virtual void Shutdown();
 
-		void Run();
+		virtual void Run();
+
+		virtual void OnUpdate(Event& fn);
 
 	private:
 		std::shared_ptr<Window> m_Window;

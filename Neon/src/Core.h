@@ -10,7 +10,15 @@
 
 //TODO: make the asserts more meaningful 
 #ifdef NEON_DEBUG
-	#define NEON_ASSERT(x) assert(x)
+	#define NEON_DEBUG_BREAK() NEON_DEBUG_CRITICAL("Ending program.\n"); assert(false); 
+
+	#define NEON_DEBUG_ASSERT(x, msg) \
+		if(!x) \
+		{ \
+			NEON_DEBUG_CRITICAL("Assertion failure: {}\n", msg); \
+			NEON_DEBUG_BREAK(); \
+		} 
 #else
-	#define NEON_ASSERT(x) 
+	#define NEON_DEBUG_ASSERT(x, msg) 
+	#define NEON_DEBUG_BREAK();
 #endif

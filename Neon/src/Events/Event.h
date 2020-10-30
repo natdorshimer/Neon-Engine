@@ -1,4 +1,6 @@
 #pragma once
+#include "neon-pch.h"
+#include "Log.h"
 #include "MouseCodes.h"
 #include "KeyCodes.h"
 #include <string>
@@ -10,15 +12,17 @@
 #define EVENT_TYPE(x) \
 	inline std::string GetName() const override { return #x ; } \
 	inline EventType GetType() const override { return EventType::##x ; } \
+	inline static EventType GetStaticType() { return EventType::##x ;} \
 	inline bool IsEventType(EventType e) const override { return GetType() & e; } 
 
 namespace Neon
 {
+
 	enum EventType
 	{
-		MousePressedEvent, MouseReleasedEvent, MouseRepeatEvent, MouseMovedEvent, MouseScrollEvent,
-		KeyPressedEvent, KeyReleasedEvent, KeyRepeatEvent,
-		WindowCloseEvent, WindowResizeEvent
+		MousePressed, MouseReleased, MouseRepeat, MouseMoved, MouseScroll,
+		KeyPressed, KeyReleased, KeyRepeat,
+		WindowClose, WindowResize
 	};
 
 	enum EventCategory
@@ -29,12 +33,9 @@ namespace Neon
 		ApplicationEvent
 	};
 
-	class EventDispatcher
-	{
 
-	};
 
-	class Event
+	class NEON_API Event
 	{
 	public:
 
@@ -57,15 +58,44 @@ namespace Neon
 		inline virtual std::string ToString() const { return GetName(); }
 	};
 
-	class WindowCloseEvent : public Event
+
+	class NEON_API EventDispatcher
 	{
 	public:
-		EVENT_TYPE(WindowCloseEvent)
+		EventDispatcher(Event& e) :
+			m_Event(e), m_Handled(false)
+		{
+
+		}
+
+		// Attempts to dispatch an event for type Event_T
+		// Will not dispatch unless the type of m_Event and the given event match
+		template<typename Event_T>
+		void Dispatch(const std::function<bool(Event&)>& handler)
+		{
+			if (m_Event.GetType() == Event_T::GetStaticType())
+			{
+				m_Handled = handler(m_Event);
+
+				NEON_DEBUG_INFO("{}\n", m_Event.ToString());
+			}
+		}
+
+		bool IsHandled() { return m_Handled; }
+	private:
+		Event& m_Event;
+		bool m_Handled;
+	};
+
+	class NEON_API WindowCloseEvent : public Event
+	{
+	public:
+		EVENT_TYPE(WindowClose)
 
 		EVENT_CATEGORY(ApplicationEvent)
 	};
 
-	class WindowResizeEvent : public Event
+	class NEON_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(int width, int height) :
@@ -84,9 +114,10 @@ namespace Neon
 			return ss.str();
 		}
 
-		EVENT_TYPE(WindowResizeEvent)
+		EVENT_TYPE(WindowResize)
 
 		EVENT_CATEGORY(ApplicationEvent)
+
 	private:
 		int m_Width;
 		int m_Height;

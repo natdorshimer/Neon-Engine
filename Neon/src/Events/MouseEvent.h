@@ -36,7 +36,7 @@ namespace Neon
 	public:
 		MousePressedEvent(MouseCode code) : MouseEvent(code) {}
 
-		EVENT_TYPE(MousePressedEvent)
+		EVENT_TYPE(MousePressed)
 	};
 
 
@@ -45,7 +45,7 @@ namespace Neon
 	public:
 		MouseReleasedEvent(MouseCode code) : MouseEvent(code) {}
 
-		EVENT_TYPE(MouseReleasedEvent)
+		EVENT_TYPE(MouseReleased)
 	};
 
 
@@ -54,7 +54,7 @@ namespace Neon
 	public:
 		MouseRepeatEvent(MouseCode code) : MouseEvent(code) {}
 
-		EVENT_TYPE(MouseReleasedEvent)
+		EVENT_TYPE(MouseReleased)
 	};
 
 
@@ -80,7 +80,7 @@ namespace Neon
 		float GetXOffset() { return m_xOffset; }
 		float GetYOffset() { return m_xOffset; }
 
-		EVENT_TYPE(MouseReleasedEvent)
+		EVENT_TYPE(MouseReleased)
 		EVENT_CATEGORY(MouseEvent | InputEvent)
 
 	private:
@@ -108,7 +108,7 @@ namespace Neon
 			return ss.str();
 		}
 
-		EVENT_TYPE(MouseMovedEvent)
+		EVENT_TYPE(MouseMoved)
 		EVENT_CATEGORY(MouseEvent | InputEvent)
 
 	private:

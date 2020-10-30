@@ -7,7 +7,7 @@
 
 namespace Neon
 {
-	class KeyEvent : public Event
+	class NEON_API KeyEvent : public Event
 	{
 	public:
 		KeyEvent() = delete;
@@ -21,7 +21,7 @@ namespace Neon
 
 		virtual std::string GetName() const = 0;
 
-		EVENT_CATEGORY(Keyboard)
+		EVENT_CATEGORY(KeyboardEvent)
 
 	protected:
 		KeyEvent(KeyCode key) : m_KeyCode(key) { }
@@ -29,27 +29,27 @@ namespace Neon
 		KeyCode m_KeyCode;
 	};
 
-	class KeyPressedEvent : public KeyEvent
+	class NEON_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(KeyCode key) : KeyEvent(key) { }
 
-		EVENT_TYPE(KeyPressedEvent)
+		EVENT_TYPE(KeyPressed)
 	};
 
-	class KeyReleasedEvent : public KeyEvent
+	class NEON_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(KeyCode key) : KeyEvent(key) { }
 
-		EVENT_TYPE(KeyReleasedEvent)
+		EVENT_TYPE(KeyReleased)
 	};
 
-	class KeyRepeatEvent : public KeyEvent
+	class NEON_API KeyRepeatEvent : public KeyEvent
 	{
 	public:
 		KeyRepeatEvent(KeyCode key) : KeyEvent(key) { }
 
-		EVENT_TYPE(KeyRepeatEvent)
+		EVENT_TYPE(KeyRepeat)
 	};
 }

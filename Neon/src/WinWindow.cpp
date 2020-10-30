@@ -1,9 +1,10 @@
 #include "neon-pch.h"
-#include "WinWindow.h"
 #include "Core.h"
+#include "WinWindow.h"
 #include "GLFW/glfw3.h"
 #include <memory>
-#include "Event.h"
+#include "Events/Event.h"
+#include "Log.h"
 
 
 Neon::WinWindow::WinWindow() : 
@@ -15,12 +16,19 @@ Neon::WinWindow::WinWindow() :
 void Neon::WinWindow::Init()
 {
 	if (!glfwInit())
-		NEON_ASSERT(false);
+		NEON_DEBUG_ASSERT(false, "GLFW failed to initialize.\n");
 
-	m_Window = glfwCreateWindow(640, 480, "Neon Engine", nullptr, nullptr);
 
-	NEON_ASSERT(m_Window);
+	m_WindowData.Width = 640;
+	m_WindowData.Height = 480;
+	m_WindowData.Title = "Neon Engine";
 
+	m_Window = glfwCreateWindow(m_WindowData.Width, m_WindowData.Height, m_WindowData.Title.c_str(), nullptr, nullptr);
+
+
+	NEON_DEBUG_ASSERT(m_Window, "m_Window is null");
+
+	//TODO: Set up the event callbacks
 
 	glfwMakeContextCurrent(m_Window);
 
@@ -31,11 +39,13 @@ void Neon::WinWindow::Init()
 		{
 			WindowData* data = (WindowData*) glfwGetWindowUserPointer(win);
 
-			//TODO: propagate the event towards application
+			WindowCloseEvent event;
 
-			glfwDestroyWindow(win);
+			data->Callback(event);
 		}
 	);
+
+	NEON_DEBUG_INFO("Window Initialized\n");
 }
 
 
@@ -49,5 +59,5 @@ void Neon::WinWindow::OnUpdate()
 
 void Neon::WinWindow::Shutdown()
 {
-
+	glfwDestroyWindow(m_Window);
 }

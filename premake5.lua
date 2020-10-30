@@ -11,11 +11,11 @@ workspace "Neon"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
-IncludeDir["GLEW"] = "%{prj.name}/vendor/GLEW/include"
-IncludeDir["glm"] = "%{prj.name}/vendor/glm/"
-IncludeDir["spdlog"] = "%{prj.name}/vendor/spdlog/include"
-IncludeDir["entt"] = "%{prj.name}/vendor/entt/include"
+IncludeDir["GLFW"] = "Neon/vendor/GLFW/include"
+IncludeDir["GLEW"] = "Neon/vendor/GLEW/include"
+IncludeDir["glm"] = "Neon/vendor/glm/"
+IncludeDir["spdlog"] = "Neon/vendor/spdlog/include"
+IncludeDir["entt"] = "Neon/vendor/entt/include"
 
 project "Neon"
     location "Neon"
@@ -43,8 +43,7 @@ project "Neon"
         "%{IncludeDir.GLEW}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.spdlog}",
-        "%{IncludeDir.entt}",
-
+        "%{IncludeDir.entt}"
     }
 
     libdirs 
@@ -120,7 +119,14 @@ project "Playground"
     includedirs
     {
         "Neon/src/",
-        "Neon/vendor/GLFW/include"
+        "Neon/vendor/GLFW/include",
+        "%{prj.name}/src/",
+        "%{prj.name}/vendor/",
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.GLEW}",
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.entt}"
     }
 
     links
