@@ -1,7 +1,8 @@
 #include "neon-pch.h"
 #include "Application.h"
 #include "Window.h"
-
+#include "Events/KeyEvent.h"
+#include "Events/MouseEvent.h"
 namespace Neon
 {
 
@@ -32,10 +33,9 @@ namespace Neon
 	void Application::OnEvent(Event& e)
 	{
 		auto shutdown = [this](Event& e)->bool { this->Shutdown(); return true; };
+		auto keyHandler = [](Event& e)->bool { return true; };
 
 		EventDispatcher ed(e);
-		ed.Dispatch<WindowCloseEvent>(shutdown);
-
 
 		m_LayerStack.OnEvent(e);
 	}

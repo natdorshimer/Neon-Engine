@@ -4,6 +4,13 @@
 
 namespace Neon
 {
+	//This is so that you can control what happens on-event application side
+
+	void Window::SetEventCallback(const EventCallbackFn& callback)
+	{
+		m_WindowData.Callback = callback;
+	}
+
 	Window* Window::Create()
 	{
 		#ifdef NEON_PLATFORM_WINDOWS

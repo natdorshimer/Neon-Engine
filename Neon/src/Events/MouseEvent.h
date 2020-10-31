@@ -1,6 +1,7 @@
 #pragma once
 #include "neon-pch.h"
 #include "Event.h"
+#include "MouseCodes.h"
 #include "Core.h"
 #include <sstream>
 
@@ -14,7 +15,7 @@ namespace Neon
 		inline virtual std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << ":   MouseCode:" << m_Button;
+			ss << GetName() << ":   MouseCode:" << (int)m_Button;
 			return ss.str();
 		}
 
@@ -22,10 +23,11 @@ namespace Neon
 
 		virtual MouseCode GetMouseCode() { return m_Button; }
 
-		EVENT_CATEGORY(MouseEvent | InputEvent)
+		EVENT_CATEGORY(MouseEventCategory | InputEventCategory)
 
 	protected:
-		MouseEvent(MouseCode mousecode);
+		MouseEvent(MouseCode mousecode) :
+			m_Button(mousecode) {}
 
 		MouseCode m_Button;
 	};
@@ -81,7 +83,7 @@ namespace Neon
 		float GetYOffset() { return m_xOffset; }
 
 		EVENT_TYPE(MouseReleased)
-		EVENT_CATEGORY(MouseEvent | InputEvent)
+		EVENT_CATEGORY(MouseEventCategory | InputEventCategory)
 
 	private:
 		float m_xOffset;
@@ -109,7 +111,7 @@ namespace Neon
 		}
 
 		EVENT_TYPE(MouseMoved)
-		EVENT_CATEGORY(MouseEvent | InputEvent)
+		EVENT_CATEGORY(MouseEventCategory | InputEventCategory)
 
 	private:
 		float m_xPos;

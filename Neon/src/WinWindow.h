@@ -16,6 +16,11 @@ namespace Neon
 		virtual void Shutdown() override;
 
 	private:
+
+		void InitInputHandlers();
+
+	private:
 		GLFWwindow* m_Window;
+
 	};
 }

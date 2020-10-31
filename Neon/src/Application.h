@@ -23,6 +23,4 @@ namespace Neon
 		LayerStack m_LayerStack;
 		bool m_Running;
 	};
-
-
 }

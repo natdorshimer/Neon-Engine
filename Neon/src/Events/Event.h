@@ -27,10 +27,10 @@ namespace Neon
 
 	enum EventCategory
 	{
-		MouseEvent,
-		KeyboardEvent,
-		InputEvent,
-		ApplicationEvent
+		MouseEventCategory,
+		KeyboardEventCategory,
+		InputEventCategory,
+		ApplicationEventCategory
 	};
 
 
@@ -92,7 +92,7 @@ namespace Neon
 	public:
 		EVENT_TYPE(WindowClose)
 
-		EVENT_CATEGORY(ApplicationEvent)
+		EVENT_CATEGORY(ApplicationEventCategory)
 	};
 
 	class NEON_API WindowResizeEvent : public Event
@@ -116,7 +116,7 @@ namespace Neon
 
 		EVENT_TYPE(WindowResize)
 
-		EVENT_CATEGORY(ApplicationEvent)
+		EVENT_CATEGORY(ApplicationEventCategory)
 
 	private:
 		int m_Width;

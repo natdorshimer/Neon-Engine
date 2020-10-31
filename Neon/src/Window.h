@@ -25,10 +25,7 @@ namespace Neon
 		virtual void Shutdown() = 0;
 
 		//This is so that you can control what happens on-event application side
-		inline virtual void SetEventCallback(const EventCallbackFn& callback)
-		{ 
-			m_WindowData.Callback = callback; 
-		}
+		virtual void SetEventCallback(const EventCallbackFn& callback);
 
 		static Window* Create();
 

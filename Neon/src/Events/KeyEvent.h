@@ -15,13 +15,13 @@ namespace Neon
 		inline virtual std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << ":   MouseCode:" << m_KeyCode;
+			ss << GetName() << ":  KeyCode:" << m_KeyCode;
 			return ss.str();
 		}
 
 		virtual std::string GetName() const = 0;
 
-		EVENT_CATEGORY(KeyboardEvent)
+		EVENT_CATEGORY(KeyboardEventCategory)
 
 	protected:
 		KeyEvent(KeyCode key) : m_KeyCode(key) { }

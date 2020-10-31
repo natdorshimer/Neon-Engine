@@ -4,7 +4,7 @@
 namespace Neon
 {
 	//Taken from glfw3.h and formatted
-	enum MouseCode
+	enum class MouseCode
 	{
 		Button0 = 0,
 		Button1 = 1,
