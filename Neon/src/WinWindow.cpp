@@ -28,12 +28,13 @@ void Neon::WinWindow::Init()
 
 	NEON_DEBUG_ASSERT(m_Window, "m_Window is null");
 
-	//TODO: Set up the event callbacks
 
 	glfwMakeContextCurrent(m_Window);
 
 	glfwSetWindowUserPointer(m_Window, &m_WindowData);
 
+
+	//TODO: Set up the event callbacks
 	glfwSetWindowCloseCallback(m_Window, 
 		[](GLFWwindow* win)
 		{
@@ -44,6 +45,7 @@ void Neon::WinWindow::Init()
 			data->Callback(event);
 		}
 	);
+
 
 	NEON_DEBUG_INFO("Window Initialized\n");
 }

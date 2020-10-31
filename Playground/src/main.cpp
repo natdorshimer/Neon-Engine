@@ -2,7 +2,7 @@
 
 int main()
 {
-	Neon::Application newapp;
+	auto app = std::make_unique<Neon::Application>();
 
-	newapp.Run();
+	app->Run();
 }

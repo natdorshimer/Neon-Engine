@@ -8,6 +8,7 @@ namespace Neon
 	class NEON_API Log
 	{
 	public:
+
 		template<typename... Args>
 		inline static void Error(Args&&... args)
 		{

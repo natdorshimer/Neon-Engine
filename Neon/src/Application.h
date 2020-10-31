@@ -1,7 +1,9 @@
 #pragma once
 
+#include "neon-pch.h"
 #include "Core.h"
 #include "Window.h"
+#include "LayerStack.h"
 
 namespace Neon
 {
@@ -14,9 +16,13 @@ namespace Neon
 
 		virtual void Run();
 
-		virtual void OnUpdate(Event& fn);
+		virtual void OnEvent(Event& fn);
 
 	private:
 		std::shared_ptr<Window> m_Window;
+		LayerStack m_LayerStack;
+		bool m_Running;
 	};
+
+
 }

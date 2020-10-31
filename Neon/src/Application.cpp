@@ -5,33 +5,44 @@
 namespace Neon
 {
 
-	Application::Application()
+	Application::Application() : m_Running(true)
 	{
 		m_Window.reset(Window::Create());
 
 		//Bind the application's OnUpdate as the event handler for the window itself
-		m_Window->SetEventCallback([this](Event& e){this->OnUpdate(e); });
+		m_Window->SetEventCallback([this](Event& e){this->OnEvent(e); });
 	}
 
 	void Application::Run()
 	{
-		while (m_Window.get())
+		static Clock clk;
+
+		Timestep dt = clk.GetElapsedTime();
+		clk.Reset();
+
+		while (m_Running)
 		{
 			m_Window->OnUpdate();
+
+			m_LayerStack.OnUpdate(dt);
 		}
 	}
 
 	//This is where application event handling is dealt with 
-	void Application::OnUpdate(Event& e)
+	void Application::OnEvent(Event& e)
 	{
 		auto shutdown = [this](Event& e)->bool { this->Shutdown(); return true; };
 
 		EventDispatcher ed(e);
 		ed.Dispatch<WindowCloseEvent>(shutdown);
+
+
+		m_LayerStack.OnEvent(e);
 	}
 
 	void Neon::Application::Shutdown()
 	{
+		m_Running = false;
 		m_Window->Shutdown();
 	}
 }
