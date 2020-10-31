@@ -6,6 +6,7 @@ namespace Neon
 {
 	using EventCallbackFn = std::function<void(Event&)>;
 
+
 	struct WindowData
 	{
 		unsigned int Width;

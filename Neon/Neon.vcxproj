@@ -172,6 +172,7 @@ IF EXIST vendor\GLEW\bin\Release\x64\glew32.dll\ (xcopy /Q /E /Y /I vendor\GLEW\
     <ClInclude Include="src\Events\KeyEvent.h" />
     <ClInclude Include="src\Events\MouseCodes.h" />
     <ClInclude Include="src\Events\MouseEvent.h" />
+    <ClInclude Include="src\GraphicsContext.h" />
     <ClInclude Include="src\Layer.h" />
     <ClInclude Include="src\LayerStack.h" />
     <ClInclude Include="src\Log.h" />
@@ -182,6 +183,7 @@ IF EXIST vendor\GLEW\bin\Release\x64\glew32.dll\ (xcopy /Q /E /Y /I vendor\GLEW\
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\GraphicsContext.cpp" />
     <ClCompile Include="src\Layer.cpp" />
     <ClCompile Include="src\LayerStack.cpp" />
     <ClCompile Include="src\WinWindow.cpp" />

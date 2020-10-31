@@ -31,6 +31,7 @@
     <ClInclude Include="src\LayerStack.h" />
     <ClInclude Include="src\Layer.h" />
     <ClInclude Include="src\Clock.h" />
+    <ClInclude Include="src\GraphicsContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
@@ -39,5 +40,6 @@
     <ClCompile Include="src\neon-pch.cpp" />
     <ClCompile Include="src\Layer.cpp" />
     <ClCompile Include="src\LayerStack.cpp" />
+    <ClCompile Include="src\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>

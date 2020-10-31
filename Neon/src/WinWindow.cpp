@@ -54,9 +54,10 @@ void Neon::WinWindow::Shutdown()
 	glfwDestroyWindow(m_Window);
 }
 
+//Produces Neon Engine events from GLFW events and forwards them with data->Callback
 void Neon::WinWindow::InitInputHandlers()
 {
-	//TODO: Set up the event callbacks
+
 	glfwSetWindowCloseCallback(m_Window,
 		[](GLFWwindow* win)
 		{
@@ -76,24 +77,24 @@ void Neon::WinWindow::InitInputHandlers()
 
 			switch (action)
 			{
-			case GLFW_PRESS:
-			{
-				KeyPressedEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
-			case GLFW_RELEASE:
-			{
-				KeyReleasedEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
-			case GLFW_REPEAT:
-			{
-				KeyRepeatEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyRepeatEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
 			}
 
 		}
@@ -107,24 +108,24 @@ void Neon::WinWindow::InitInputHandlers()
 
 			switch (action)
 			{
-			case GLFW_PRESS:
-			{
-				MousePressedEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
-			case GLFW_RELEASE:
-			{
-				MouseReleasedEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
-			case GLFW_REPEAT:
-			{
-				MouseRepeatEvent e{ keyCode };
-				data->Callback(e);
-				break;
-			}
+				case GLFW_PRESS:
+				{
+					MousePressedEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					MouseReleasedEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					MouseRepeatEvent e{ keyCode };
+					data->Callback(e);
+					break;
+				}
 			}
 		}
 	);

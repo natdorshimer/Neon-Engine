@@ -15,6 +15,7 @@ bin-int/*
 
 *.sln*
 neon.lua
+*.vcxproj*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
